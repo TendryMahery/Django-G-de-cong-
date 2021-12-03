@@ -1,0 +1,150 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="{%static 'bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+    <link rel="stylesheet" href="{%static 'aos/dist/aos.css'%}">
+    <script src="{%static 'chartjs/chart.min.js'%}"></script>
+    <title>Ministere</title>
+</head>
+
+<body>
+    {% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark justify-content-center bg-dark fixed-top" id="nav"
+        aria-label="Tenth navbar example" style="height: 60px;">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08"
+                aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav">
+
+            </ul>
+            <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+                <ul class="navbar-nav " style="top:20px">
+                    <li class="nav-item">
+                        <img src="{%static 'image/logo.jpg'%}" width="50px" height="40px" style="top:10px">
+                    </li>
+                    <li>
+                        <h1 class="text-warning">M"<span class="text-white">AEP</span></h1>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'accueil' %}"> <i
+                                class="fa fa-home"></i>
+                            Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'contact' %}"><i class="fa fa-phone"></i> Contact</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'apropos' %}" tabindex="-1" aria-disabled="true"><i
+                                class="fa fa-address-book" aria-hidden="true"></i> A propos</a>
+                    </li>
+
+                    <li class="nav-item">
+                        {% if user.is_authenticated %}
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal3">
+
+                            <i class="fa fa-bell"></i><span style="font-weight: bolder; color:red;">*</span>
+                            
+                        </button>
+                        <div class="modal fade active" id="exampleModal3" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel3">Notification <i
+                                                class="fa fa-bell"></i></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {%if auto%}
+                                        {%for aut in auto%}
+                                        <ul>
+                                            <li>
+                                                <h6 class="alert alert-warning">
+                                                    Votre demande le {{aut.datedebut}} de type {{aut.typeconge}} est
+                                                    <strong>{{aut.notification}}</strong>
+                                                </h6>
+                                            </li>
+                                        </ul>
+                                        {%endfor%}
+                                        {%else%}
+                                        <h4 class="alert alert-danger">Aucune notification</h4>
+                                        {%endif%}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-dismiss="modal">Fermer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item">
+                        {% if user.is_authenticated %}
+                        <a class="nav-link active" style="font-size: 13px; color:rgb(194, 194, 196);">
+                            <p class="d-block text-gray-dark">{{user.last_name}} </p>
+                        </a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="dropdown08" data-bs-toggle="dropdown"
+                            aria-expanded="false"><i class="fa fa-user"></i></a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown08">
+                            {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{%url 'demande'%}">Pérmission</a></li>
+                            {%else%}
+                            <li><a class="dropdown-item" href="register"><i class="fa fa-plus"></i> S'inscrire</a></li>
+                            {% endif %}
+                            <li><a class="dropdown-item" href="admin/"><i class="fas fa-sign-in-alt"></i> Admin et
+                                    RH</a></li>
+                        </ul>
+                    </li>
+                    <div class="text-end">
+                        {%if user.is_authenticated%}
+                        <a href="logout"><button type="submit" class="btn btn-outline-danger" style="font-weight: bold;"><i
+                                    class="fas fa-sign-out-alt"></i>
+                                Déconnexion</button></a>
+                        {%else%}
+                        <a href="{% url 'connection' %}"><button type="submit" class="btn btn-success me-2"><i
+                                    class="fas fa-sign-in-alt"></i>
+                                Connexion</button></a>
+                        {%endif%}
+
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% endblock %}
+    {%block content%}
+
+    {% endblock%}
+    {%block javascript%}
+
+    {% endblock%}
+    <script type="text/javascript" src="{%static 'bootstrap/js/bootstrap.min.js'%}"></script>
+    <script type="text/javascript" src="{%static 'fontawesome/js/all.js'%}"></script>
+    <script type="text/javascript" src="{%static 'jquery/jquery.js'%}"></script>
+    <script type="text/javascript" src="{%static 'aos/dist/aos.js'%}"></script>
+    <!-- <script type="text/javascript" src="{%static 'popper/popper.min.js'%}"></script> -->
+    <script type="text/javascript" src="{%static 'js/main.js'%}"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

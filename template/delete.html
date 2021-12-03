@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block content %}
+
+<br>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col " data-aos="fade-down">
+
+            </div>
+            <div class="col " data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+
+                <div class="card shadow-sm">
+                    <form action="{% url 'delete' aut.id%}" method="POST">
+                        {%csrf_token%}
+                        <div class="card shadow-sm">
+                            <h4 class="alert alert-warning"> vous voulez vraiment le supprimer</h4>
+                            <button type="submit" id="button" class="btn btn-danger m-5"
+                                class="feather feather-calendar"><i class="fa fa-check"></i>
+                                Supprimer</button>
+                            
+                        </div>
+                    </form>
+                    <a href="{% url 'demande'%}"><button class="btn btn-warning" style="width: 100%;">Annuler</button></a>
+
+                </div>
+                <div class="card shadow-sm">
+
+                </div>
+
+            </div>
+            <div class="col " data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

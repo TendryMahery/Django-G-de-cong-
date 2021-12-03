@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block content %}
+<br><br><br>
+<div class="b-example-divider">
+    <nav class="nav nav-underline" aria-label="Secondary navigation">
+        {%for message in messages%}
+        <div class="text-center alert alert-danger m-2" style="border: 1px solid rgb(119, 55, 55);">
+            <p class="mess" style="font-weight: bold;color:rgb(105, 45, 45);">{{message}}</p>
+        </div>
+        {%endfor%}
+    </nav>
+</div>
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 mb-3" data-aos="fade-up" data-aos-duration="3000">Ministère de
+                l'Agriculture de l'Elévage et de la Pèche</h1>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-5">
+            <form class="p-4 p-md-5 border rounded-3 bg-light" method="POST" action="contact">
+                {%csrf_token%}
+                <div class="form-floating mb-3">
+                    <input type="text" name="nomcontact" class="form-control" id="floatingInput" placeholder="Nom">
+                    <label for="floatingInput">Nom</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" name="prenomcontact" class="form-control" id="floatingInput"
+                        placeholder="Prenom">
+                    <label for="floatingInput">Prenom</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" name="email" class="form-control" id="floatingInput" placeholder="Email">
+                    <label for="floatingInput">E-mail</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" name="message" placeholder="Message"></textarea>
+                    <label for="floatingInput">Message ou Remarque</label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Envoyé</button>
+                <hr class="my-4">
+                <small class="text-muted">Message</small>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container bg-dark m-auto text-white">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+        style="color: white;">
+        <p class="col-md-4 mb-0 text-muted">&copy; Rafanomezana Tendry Mahery :)</p>
+
+        <a href="/"
+            class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <use xlink:href="#bootstrap" />
+            </svg>
+        </a>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="https://www.facebook.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-facebook"></i></a></li>
+            <li class="nav-item"><a href="https://www.google.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-google"></i></a></li>
+            <li class="nav-item"><a href="https://www.instagram.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-instagram"></i></a></li>
+            <li class="nav-item"><a href="https://www.twitter.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-twitter"></i></a></li>
+            <li class="nav-item"><a href="https://www.whatsapp.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-whatsapp-square"></i></a>
+            </li>
+        </ul>
+    </footer>
+</div>
+
+{% endblock %}

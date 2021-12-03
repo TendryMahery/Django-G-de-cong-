@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<section class="col-lg-6 m-lg-auto py-5 p-5 ins" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+    <form class="row g-3" method="POST" action="register">
+        {%csrf_token%}
+        <h1 class="text-center"> <i class="fa fa-users"></i> Inscription</h1>
+        <div class="col-6">
+            <div class="input-group has-validation">
+                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" name="nom" placeholder="Nom" required="">
+            </div>
+        </div>
+        <div class="col-6 mb-3">
+            <div class="input-group has-validation">
+                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" name="prenom" placeholder="Prenom" required="">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-12 mb-3">
+                <div class="input-group has-validation">
+                    <span class="input-group-text"><i class="fa fa-list-ol" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="immatricule" placeholder="IMatricule" required="">
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <div class="input-group has-validation">
+                    <span class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                    <input type="email" class="form-control" name="email" placeholder="E-mail" required="">
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <div class="input-group has-validation">
+                    <span class="input-group-text"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
+                    <input type="password" class="form-control" name="mdp1" placeholder="Mot de passe" required="">
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <div class="input-group has-validation">
+                    <span class="input-group-text"><i class="fa fa-unlock" aria-hidden="true"></i></span>
+                    <input type="password" class="form-control" name="mdp2" placeholder="Confirmer le mot de passe"
+                        required="">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary text-center w-100"> <i class="fa fa-plus"></i>
+                S'inscrire</button>
+        </div> <br>
+        <ul class="nav col-md-4 text-center">
+            <li class="nav-item"><a href="https://www.facebook.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-facebook" style="color: blue;"></i></a></li>
+            <li class="nav-item"><a href="https://www.google.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-google" style="color: rgb(218, 64, 77)"></i></a></li>
+            <li class="nav-item"><a href="https://www.instagram.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-instagram" style="color: rgba(189, 190, 97, 0.623)"></i></a></li>
+            <li class="nav-item"><a href="https://www.twitter.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-twitter" style="color: rgb(109, 109, 235)"></i></a></li>
+            <li class="nav-item"><a href="https://www.whatsapp.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-whatsapp-square" style="color: rgb(0, 255, 0)"></i></a>
+            </li>
+        </ul>
+
+        {%for message in messages%}
+        <p class="alert alert-warning" style="font-weight: bold;color:red;">{{message}}</p>
+        {%endfor%}
+    </form>
+</section>
+<div class="container bg-dark m-auto text-white">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+        style="color: white;">
+        <p class="col-md-4 mb-0 text-muted">&copy; Rafanomezana Tendry Mahery :)</p>
+
+        <a href="/"
+            class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <use xlink:href="#bootstrap" />
+            </svg>
+        </a>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="https://www.facebook.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-facebook"></i></a></li>
+            <li class="nav-item"><a href="https://www.google.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-google"></i></a></li>
+            <li class="nav-item"><a href="https://www.instagram.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-instagram"></i></a></li>
+            <li class="nav-item"><a href="https://www.twitter.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-twitter"></i></a></li>
+            <li class="nav-item"><a href="https://www.whatsapp.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-whatsapp-square"></i></a>
+            </li>
+        </ul>
+    </footer>
+</div>
+{%endblock%}

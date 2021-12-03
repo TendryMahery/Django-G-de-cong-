@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<div class="row row-cols-1 row-cols-md-5 g-4 justify-content-center conn" style="padding-top: 50px;">
+    <main class="form-signin">
+        <form method="POST" action="connection" data-aos="fade-down" data-aos-easing="linear"
+            data-aos-duration="1500">
+            {%csrf_token%}
+            <img class="mb-4 ml-4" src="{%static 'image/logo.jpg'%}" alt="" width="57" height="57"
+                style="margin-left: 90px; border-radius:50px;">
+            <h1 class="h3 mb-3 fw-normal" style="font-weight: bold;"> <i class="fa fa-users"></i> Connexion</h1>
+
+            <div class="form-floating">
+                <input type="text" name="immatriculeconne" class="form-control" id="floatingInput" placeholder="1234">
+                <label for="floatingInput">IMatricule</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" name="mdpconne" class="form-control" id="floatingPassword"
+                    placeholder="Mot de passe">
+                <label for="floatingPassword">Mot de passe</label>
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Affiché le mot de passe
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit"><i class="fas fa-sign-in-alt"></i>
+                Connexion</button>
+            <a href="register">
+                <p style="font-weight: bold;">créer un compte</p>
+            </a>
+            <a href="admin/" class="btn btn-danger w-100"><i class="fas fa-sign-in-alt"></i> Ressource hummain</a>
+            {%for message in messages%}
+            <div class="text-center alert alert-danger m-2">
+                <p class="mess" style="font-weight: bold;color:rgb(105, 45, 45); height:20px">{{message}}</p>
+            </div>
+            {%endfor%}
+            <p class="mt-1 mb-3 text-muted">© 2021–2021</p>
+        </form>
+    </main>
+</div>
+<div class="container bg-dark m-auto text-white">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+        style="color: white;">
+        <p class="col-md-4 mb-0 text-muted">&copy; Rafanomezana Tendry Mahery :)</p>
+
+        <a href="/"
+            class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <use xlink:href="#bootstrap" />
+            </svg>
+        </a>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="https://www.facebook.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-facebook"></i></a></li>
+            <li class="nav-item"><a href="https://www.google.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-google"></i></a></li>
+            <li class="nav-item"><a href="https://www.instagram.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-instagram"></i></a></li>
+            <li class="nav-item"><a href="https://www.twitter.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-twitter"></i></a></li>
+            <li class="nav-item"><a href="https://www.whatsapp.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-whatsapp-square"></i></a>
+            </li>
+        </ul>
+    </footer>
+</div>
+{% endblock %}

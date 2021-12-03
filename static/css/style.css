@@ -1,0 +1,53 @@
+
+/* accueil */
+.carousel .carousel-inner .carousel-item img {
+    height: 100vh;
+}
+
+.navbar .container-fluid .collapse .navbar-nav .nav-item .nav-link:hover {
+    color: rgb(167, 167, 167);
+}
+
+/* connection */
+
+.conn {
+    padding-top: 100px;
+    background-color: rgb(255, 255, 255);
+    height: 100vh;
+}
+
+/* demande */
+
+.demande .col-md-6 {
+    border: 1px solid;
+}
+
+/* inscription */
+
+.ins .g-3{
+    border: 1px solid rgb(134, 134, 134);
+    border-radius: 20px;
+}
+
+.flex-shrink-0{
+    margin-top: -500px;
+    position: absolute;
+    color: black;
+    font-weight: bold;
+}
+
+.haingo .container button{
+    font-size: 50px;
+    border-radius: 40px;
+    color: white;
+}
+#statistique{
+    font-size: 50%;
+    height: 20%;
+    width: 20%;
+}
+
+
+
+
+

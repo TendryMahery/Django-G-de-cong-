@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block content %}
+<br><br>
+<div class="nav-scroller bg-body shadow-sm">
+    
+    <div class="b-example-divider">
+        <nav class="nav nav-underline" aria-label="Secondary navigation">
+            {%for message in messages%}
+            <div class="text-center alert alert-info m-2" style="width: 100%;">
+                <h6>{{message}}</h6>
+            </div>
+            {%endfor%}
+        </nav>
+    </div>
+    <!--  style -->
+
+</div>
+
+<section class="bg-dark text-light p-5 text-center">
+    <div class="container">
+        <div class="d-sm-flex">
+            <div>
+                <h1>Ministère de l'Agriculture <span class="text-warning">de l'Elévage et de la Pèche</span></h1>
+                <p class=""></p>
+                <button class="btn btn-primary"> <i class="fas fa-newspaper"></i> Autorisation d'absence</button>
+            </div>
+            <img src="{%static 'image/logo.jpg'%}" class="img-fluid w-50 d-none d-sm-block" alt="" srcset=""
+                style="height: 300px;">
+        </div>
+    </div>
+</section>
+
+<div class="alert alert-danger text-center">
+  <h4> Autorisation d'absence</h4>
+</div>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col d-flex" data-aos="fade-down">
+                <div class="card shadow-sm m-2 ">
+                    <button class="btn btn-danger"><i class="fa fa-user"></i> Mon profil</button>
+                    <p style="font-weight: bold;">IMatricule: {{user.username}} </p>
+                    <p style="font-weight: bold;">Nom: {{user.first_name}}</p>
+                    <p style="font-weight: bold;">Prenom: {{user.last_name}}</p>
+                </div>
+                <img src="{%static 'image/avartar.png'%}" srcset="">
+            </div>
+            <div class="col " data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                {%if pre%}
+                <div class="card shadow-sm">
+                    <button type="button" id="button" class="btn btn-success m-5" class="feather feather-calendar"><i
+                            class="fa fa-check"></i>
+                        votre présence est soigné</button>
+                </div>
+                {%else%}
+                <div class="card shadow-sm">
+                    <button type="button" id="button" class="btn btn-primary m-5" data-bs-whatever="@mdo"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal" class="feather feather-calendar">
+                        Présence</button>
+                </div>
+                {%endif%}
+            </div>
+            <div class="col " data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                <div class="card shadow-sm">
+                    <button type="button" class="btn btn-primary m-5" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal2" data-bs-whatever="@mdo" class="feather feather-calendar"><i
+                            class="fa fa-calendar"></i> Autorisation d'absence</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title pointage" onclick="pointage()" id="exampleModalLabel">Présence</h5> <i
+                    class="fa fa-check"></i>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="demande">
+                    {%csrf_token%}
+                    <label for="" style="font-weight: bold;">Pointage de Présence <i class="fa fa-users"></i></label>
+                    <div class="col mb-2">
+                        <div class="input-group has-validation">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            <input type="text" class="form-control" name="nomp" id="nomp"
+                                value="{{user.first_name}} {{user.last_name}}">
+                        </div>
+                    </div>
+                    <label for="" style="font-weight: bold;">status</label>
+                    <select name="presence" class="form-control mb-2">
+                        <option value="présent">présent</option>
+                        <option value="présent">présent(e)</option>
+                    </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-primary">Exporter</button>
+            </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Autorisation -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Autorisation d'absence</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="demande">
+                    {%csrf_token%}
+                    <div class="col mb-2">
+                        <div class="input-group has-validation mb-2">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            <input type="text" class="form-control" name="nom" id="nom"
+                                value="{{user.first_name}} {{user.last_name}}" placeholder="Votre nom et prenom">
+
+                        </div>
+                        <div class="input-group has-validation">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            <input type="text" class="form-control" name="ma" id="nom" value="{{user.username}}"
+                                placeholder="Votre nom et prenom">
+
+                        </div>
+
+                    </div>
+                    <label for="" style="font-weight: bold;">Cadre</label>
+                    <select name="cadre" class="form-control mb-2">
+                        <option value="Informatique">---------------------------------------------------------------
+                        </option>
+                        <option value="Informatique">A</option>
+                        <option value="Droit">B</option>
+                        <option value="Finance">C</option>
+                    </select>
+                    <label for="" style="font-weight: bold;">Département</label>
+                    <select name="departement" class="form-control mb-2">
+                        <option value="Informatique">---------------------------------------------------------------
+                        </option>
+                        <option value="Informatique">Informatique</option>
+                        <option value="Droit">Droit</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Femme de menage">Femme de menage</option>
+                    </select>
+                    <label for="" style="font-weight: bold;">Type de congé</label>
+                    <select name="typeconge" class="form-control mb-2">
+                        <option value="payé">--------------------------------------------------------------</option>
+                        <option value="payé">Octroi de solde</option>
+                        <option value="mariage">Mariage</option>
+                        <option value="naissance">Maternité</option>
+                        <option value="naissance">Paternité</option>
+                        <option value="décé">Décé</option>
+                        <option value="décé">Sanitaire</option>
+                    </select>
+                    <input type="number" class="form-control" name="jour" placeholder="Nombre de jour" required="">
+                    <div class="col-6 mb-2">
+                       <label for=""> A partir de </label>
+                        <div class="input-group has-validation">
+                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                            <input type="date" name="datedebut" class="form-control" required="">
+                        </div>
+                    </div>
+                    <div class="col-6 mb-2">
+                        <div class="input-group has-validation">
+                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                            <input type="date" name="datefin" class="form-control" required="">
+                        </div>
+                    </div>
+                    
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-primary envoyez">Envoyez</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- mes demande -->
+<div id="table">
+
+</div>
+<h4 class="m-3 alert alert-danger text-center">Mes demandes</h4>
+<hr>
+<table id="table" class="table table-hover m-3">
+    <thead style="background-color: rgb(25, 146, 9);">
+        <tr>
+            <th scope="col">Departement</th>
+            <th scope="col">Type de congé</th>
+            <th scope="col">Date de début</th>
+            <th scope="col">Date de fin</th>
+            <th scope="col">Nombre de jour</th>
+            <th scope="col">Rapport</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for aut in auto%}
+        <tr class="table-active">
+            <th scope="row">{{aut.departement}}</th>
+            <td>{{aut.typeconge}}</td>
+            <td>{{aut.datedebut}}</td>
+            <td>{{aut.datefin}}</td>
+            <td>{{aut.dure}} Jours</td>
+            <td style="font-weight: bold; color: green">{{aut.notification}}</td>
+            <td>
+
+                <a href="{% url 'delete' aut.id %}"><button type="submit" class="btn btn-danger">supprimer</button></a>
+                </form>
+            </td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+<!-- modale -->
+
+<!-- footer -->
+<div class="container bg-dark m-auto text-white">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+        style="color: white;">
+        <p class="col-md-4 mb-0 text-muted">&copy; Rafanomezana Tendry Mahery :)</p>
+
+        <a href="/"
+            class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <use xlink:href="#bootstrap" />
+            </svg>
+        </a>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="https://www.facebook.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-facebook"></i></a></li>
+            <li class="nav-item"><a href="https://www.google.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-google"></i></a></li>
+            <li class="nav-item"><a href="https://www.instagram.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-instagram"></i></a></li>
+            <li class="nav-item"><a href="https://www.twitter.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-twitter"></i></a></li>
+            <li class="nav-item"><a href="https://www.whatsapp.com/" class="nav-link px-2 text-muted"><i
+                        class="fab fa-whatsapp-square"></i></a>
+            </li>
+        </ul>
+    </footer>
+</div>
+{%endblock%}
